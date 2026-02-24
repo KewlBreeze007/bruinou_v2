@@ -44,6 +44,7 @@
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'spin': 'spin 1s linear infinite',
                     },
                     keyframes: {
                         float: {
@@ -117,6 +118,12 @@
 
         .logo-glow {
             filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.2));
+        }
+
+        /* Form loading state */
+        .form-loading {
+            opacity: 0.7;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -644,7 +651,7 @@
                             </div>
                             <div>
                                 <div class="font-medium text-slate-900">Email</div>
-                                <div class="text-slate-600 text-sm">freddie@boec.co.za</div>
+                                <div class="text-slate-600 text-sm">sales@boec.co.za</div>
                             </div>
                         </div>
 
@@ -678,49 +685,102 @@
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
-                    <form id="quoteForm" class="space-y-6">
+                    <!-- Formspree Form - Replace YOUR_FORM_ID with actual ID from formspree.io -->
+                    <form 
+                        action="https://formspree.io/f/YOUR_FORM_ID" 
+                        method="POST" 
+                        id="quoteForm" 
+                        class="space-y-6"
+                    >
+                        <!-- Hidden fields for Formspree configuration -->
+                        <input type="hidden" name="_subject" value="New BOEC Quote Request - Website">
+                        <input type="hidden" name="_cc" value="freddie@boec.co.za">
+                        <input type="hidden" name="_next" value="https://boec.co.za/thanks.html">
+                        
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" placeholder="Your Company">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Company Name *</label>
+                                <input 
+                                    type="text" 
+                                    name="company" 
+                                    required 
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" 
+                                    placeholder="Your Company"
+                                >
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Contact Person</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" placeholder="Full Name">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Contact Person *</label>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    required 
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" 
+                                    placeholder="Full Name"
+                                >
                             </div>
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
-                                <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" placeholder="email@company.co.za">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    required 
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" 
+                                    placeholder="email@company.co.za"
+                                >
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">Phone</label>
-                                <input type="tel" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" placeholder="+27 (0)">
+                                <input 
+                                    type="tel" 
+                                    name="phone" 
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" 
+                                    placeholder="+27 (0) __ ___ ____"
+                                >
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Service Required</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all">
-                                <option>Ionizing Radiation Calibration</option>
-                                <option>Dimensional Metrology</option>
-                                <option>On-Site Radiation Survey</option>
-                                <option>Compliance Testing</option>
-                                <option>Training/Consulting</option>
-                                <option>Multiple Services</option>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Service Required *</label>
+                            <select 
+                                name="service" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all"
+                            >
+                                <option value="">Select a service...</option>
+                                <option value="Ionizing Radiation Calibration">Ionizing Radiation Calibration</option>
+                                <option value="Dimensional Metrology">Dimensional Metrology</option>
+                                <option value="On-Site Radiation Survey">On-Site Radiation Survey</option>
+                                <option value="Compliance Testing">Compliance Testing</option>
+                                <option value="Training/Consulting">Training/Consulting</option>
+                                <option value="Multiple Services">Multiple Services</option>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Equipment Details</label>
-                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" placeholder="Please describe your equipment (manufacturer, model, serial number, quantity)..."></textarea>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Equipment Details *</label>
+                            <textarea 
+                                name="details" 
+                                rows="4" 
+                                required
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-red focus:ring-2 focus:ring-red-100 outline-none transition-all" 
+                                placeholder="Please describe your equipment (manufacturer, model, serial number, quantity, and any specific requirements)..."
+                            ></textarea>
                         </div>
 
-                        <button type="submit" class="w-full py-4 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group">
-                            Submit Request
-                            <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        <!-- Honeypot field to prevent spam -->
+                        <input type="text" name="_gotcha" style="display:none">
+
+                        <button 
+                            type="submit" 
+                            id="submitBtn"
+                            class="w-full py-4 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group"
+                        >
+                            <span id="btnText">Submit Request</span>
+                            <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform" id="btnIcon"></i>
+                            <i data-lucide="loader-2" class="w-5 h-5 animate-spin hidden" id="loadingIcon"></i>
                         </button>
 
                         <p class="text-xs text-slate-500 text-center">
@@ -785,9 +845,9 @@
                 </p>
                 <div class="flex items-center gap-4">
                     <span class="text-xs text-slate-600">SANAS Accredited Laboratory</span>
-                    <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition-colors">
+                    <a href="mailto:sales@boec.co.za" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-red transition-colors">
                         <i data-lucide="mail" class="w-5 h-5"></i>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -799,12 +859,30 @@
             <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden border-2 border-red-100">
                 <img src="BOEC logo.png" alt="Success" class="w-16 h-16 object-contain p-2">
             </div>
-            <h3 class="font-display text-2xl font-bold text-center text-slate-900 mb-2">Request Received!</h3>
+            <h3 class="font-display text-2xl font-bold text-center text-slate-900 mb-2">Request Sent!</h3>
             <p class="text-slate-600 text-center mb-6">
-                Thank you for contacting BruinOu Engineering. We will review your calibration requirements 
-                and respond within 24 hours.
+                Thank you for contacting BruinOu Engineering. Your request has been sent to <strong>sales@boec.co.za</strong> 
+                and we will respond within 24 hours.
             </p>
             <button onclick="closeModal()" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="errorModalContent">
+            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="alert-circle" class="w-10 h-10 text-brand-red"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-center text-slate-900 mb-2">Submission Error</h3>
+            <p class="text-slate-600 text-center mb-6">
+                There was an error sending your request. Please email us directly at 
+                <a href="mailto:sales@boec.co.za" class="text-brand-red font-medium">sales@boec.co.za</a> 
+                or call <strong>016 100 1611</strong>.
+            </p>
+            <button onclick="closeErrorModal()" class="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition-colors">
                 Close
             </button>
         </div>
@@ -839,43 +917,113 @@
             });
         });
 
-        // Form submission
+        // Form handling with Formspree
         const form = document.getElementById('quoteForm');
-        const modal = document.getElementById('successModal');
-        const modalContent = document.getElementById('modalContent');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const loadingIcon = document.getElementById('loadingIcon');
+        const successModal = document.getElementById('successModal');
+        const successModalContent = document.getElementById('modalContent');
+        const errorModal = document.getElementById('errorModal');
+        const errorModalContent = document.getElementById('errorModalContent');
 
-        form.addEventListener('submit', (e) => {
+        // Check if form has been submitted (for when user returns from Formspree redirect)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true') {
+            showSuccessModal();
+            // Clean URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Show modal
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            // Show loading state
+            setLoading(true);
             
-            // Animate in
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            }, 10);
-            
-            // Reset form
-            form.reset();
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showSuccessModal();
+                    form.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                showErrorModal();
+            } finally {
+                setLoading(false);
+            }
         });
 
-        function closeModal() {
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                btnText.textContent = 'Sending...';
+                btnIcon.classList.add('hidden');
+                loadingIcon.classList.remove('hidden');
+                form.classList.add('form-loading');
+            } else {
+                submitBtn.disabled = false;
+                btnText.textContent = 'Submit Request';
+                btnIcon.classList.remove('hidden');
+                loadingIcon.classList.add('hidden');
+                form.classList.remove('form-loading');
+            }
+        }
+
+        function showSuccessModal() {
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
             setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
+                successModalContent.classList.remove('scale-95', 'opacity-0');
+                successModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            successModalContent.classList.remove('scale-100', 'opacity-100');
+            successModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
             }, 300);
         }
 
-        // Close modal on backdrop click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
+        function showErrorModal() {
+            errorModal.classList.remove('hidden');
+            errorModal.classList.add('flex');
+            setTimeout(() => {
+                errorModalContent.classList.remove('scale-95', 'opacity-0');
+                errorModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeErrorModal() {
+            errorModalContent.classList.remove('scale-100', 'opacity-100');
+            errorModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                errorModal.classList.add('hidden');
+                errorModal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Close modals on backdrop click
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) closeModal();
+        });
+        
+        errorModal.addEventListener('click', (e) => {
+            if (e.target === errorModal) closeErrorModal();
         });
 
         // Smooth scroll for anchor links

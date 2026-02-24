@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrecisionCal Labs | ISO 17025 Accredited Calibration Services</title>
+    <meta name="description" content="ISO 17025 accredited calibration laboratory specializing in precision measurement instruments, electrical, temperature, pressure, and dimensional calibration.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-grid {
+            background-image: 
+                linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .calibration-card:hover .calibration-icon {
+            transform: rotate(180deg);
+        }
+        
+        .calibration-icon {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .nav-scrolled {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0ea5e9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased selection:bg-primary-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-500 rounded-lg flex items-center justify-center shadow-lg">
+                        <i data-lucide="activity" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="font-display font-bold text-2xl text-slate-900 dark:text-white tracking-tight">
+                        Precision<span class="text-primary-600">Cal</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Services</a>
+                    <a href="#accreditation" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Accreditation</a>
+                    <a href="#process" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Process</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-full transition-all shadow-lg hover:shadow-primary-500/30">
+                        Get Quote
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-xl">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#services" class="block text-base font-medium text-slate-600 hover:text-primary-600">Services</a>
+                <a href="#accreditation" class="block text-base font-medium text-slate-600 hover:text-primary-600">Accreditation</a>
+                <a href="#process" class="block text-base font-medium text-slate-600 hover:text-primary-600">Process</a>
+                <a href="#contact" class="block px-6 py-3 bg-primary-600 text-white font-medium rounded-lg text-center">Get Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden bg-slate-50 hero-grid">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-transparent to-accent-50/30"></div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 right-10 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-accent-400/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-slide-up">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium border border-primary-200">
+                        <span class="w-2 h-2 bg-primary-600 rounded-full mr-2 animate-pulse"></span>
+                        ISO 17025:2017 Accredited Laboratory
+                    </div>
+                    
+                    <h1 class="font-display text-5xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                        Precision <br>
+                        <span class="gradient-text">Measurement</span><br>
+                        Excellence
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 max-w-lg leading-relaxed">
+                        Accredited calibration services ensuring traceability, accuracy, and compliance. 
+                        We calibrate your critical measurement instruments to international standards.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-primary-500/30 flex items-center justify-center gap-2 group">
+                            Schedule Calibration
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-full border border-slate-200 transition-all flex items-center justify-center gap-2">
+                            View Services
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 pt-4">
+                        <div class="flex -space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 border-2 border-white flex items-center justify-center">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary-600"></i>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-accent-100 border-2 border-white flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-accent-600"></i>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-green-100 border-2 border-white flex items-center justify-center">
+                                <i data-lucide="award" class="w-5 h-5 text-green-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 font-medium">Trusted by 500+ industrial clients</p>
+                    </div>
+                </div>
+
+                <div class="relative lg:h-[600px] flex items-center justify-center">
+                    <div class="relative w-full max-w-md animate-float">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-3xl blur-2xl opacity-20 transform rotate-6"></div>
+                        <div class="relative bg-white rounded-3xl shadow-2xl p-8 border border-slate-100">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">CAL-2024-001</span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-semibold text-slate-500 uppercase">Device</span>
+                                        <span class="text-xs text-primary-600 font-medium">In Progress</span>
+                                    </div>
+                                    <div class="font-display font-bold text-slate-800">Digital Multimeter 34401A</div>
+                                    <div class="mt-3 h-2 bg-slate-200 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-primary-500 to-accent-500 w-3/4 rounded-full"></div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="p-3 bg-primary-50 rounded-lg border border-primary-100">
+                                        <div class="text-xs text-primary-600 mb-1">Uncertainty</div>
+                                        <div class="font-mono font-bold text-primary-900">±0.002%</div>
+                                    </div>
+                                    <div class="p-3 bg-accent-50 rounded-lg border border-accent-100">
+                                        <div class="text-xs text-accent-600 mb-1">Traceability</div>
+                                        <div class="font-mono font-bold text-accent-900">NIST</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 bg-slate-900 rounded-xl text-white">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs text-slate-400">Certificate ID</span>
+                                        <i data-lucide="file-check" class="w-4 h-4 text-green-400"></i>
+                                    </div>
+                                    <div class="font-mono text-sm">PC-2024-08923-A</div>
+                                    <div class="mt-2 text-xs text-slate-500">Valid until: 2025-02-24</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="font-display text-4xl font-bold text-primary-600 mb-1">25+</div>
+                    <div class="text-sm text-slate-600 font-medium">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-4xl font-bold text-primary-600 mb-1">50k+</div>
+                    <div class="text-sm text-slate-600 font-medium">Calibrations/Year</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-4xl font-bold text-primary-600 mb-1">48h</div>
+                    <div class="text-sm text-slate-600 font-medium">Turnaround Time</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-4xl font-bold text-primary-600 mb-1">99.9%</div>
+                    <div class="text-sm text-slate-600 font-medium">Accuracy Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-4">Calibration Capabilities</h2>
+                <p class="text-slate-600 text-lg">Comprehensive calibration services across multiple disciplines, 
+                all performed in our environmentally controlled laboratory facilities.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Electrical -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="zap" class="w-7 h-7 text-primary-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Electrical & Electronic</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        DC/LF electrical standards, multimeters, oscilloscopes, power supplies, and insulation testers.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-primary-500"></i>
+                            DC Voltage: 0-1000V
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-primary-500"></i>
+                            AC Voltage: 10Hz-1MHz
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-primary-500"></i>
+                            Resistance: 0-10GΩ
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Temperature -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="thermometer" class="w-7 h-7 text-orange-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Temperature & Humidity</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        RTDs, thermocouples, infrared thermometers, data loggers, and environmental chambers.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                            Range: -196°C to 1200°C
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                            Humidity: 10-95% RH
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-orange-500"></i>
+                            ITS-90 Traceability
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pressure -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="gauge" class="w-7 h-7 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Pressure & Vacuum</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        Digital pressure gauges, transducers, barometers, and vacuum sensors.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                            Range: -1 to 1000 bar
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                            Hydraulic & Pneumatic
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                            Leak Testing Available
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dimensional -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="ruler" class="w-7 h-7 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Dimensional</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        Micrometers, calipers, gauge blocks, pin gauges, and optical comparators.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                            Resolution: 0.0001mm
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                            Length up to 1000mm
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                            CMM Programming
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mass & Force -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="scale" class="w-7 h-7 text-green-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Mass & Force</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        Analytical balances, industrial scales, load cells, and force gauges.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            OIML Class E2-F2
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            Force: 1N to 500kN
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            Torque Wrenches
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- On-Site -->
+                <div class="service-card calibration-card bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6 calibration-icon">
+                        <i data-lucide="truck" class="w-7 h-7 text-pink-600"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">On-Site Services</h3>
+                    <p class="text-slate-600 mb-4 text-sm leading-relaxed">
+                        We bring the laboratory to you. Minimize downtime with our mobile calibration units.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-pink-500"></i>
+                            Production Line Cal
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-pink-500"></i>
+                            Preventive Maintenance
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-pink-500"></i>
+                            24/7 Emergency Service
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accreditation Section -->
+    <section id="accreditation" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 skew-x-12 transform origin-top-right"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                        Internationally Recognized<br>
+                        <span class="gradient-text">Accreditation</span>
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Our laboratory maintains ISO/IEC 17025:2017 accreditation, ensuring your measurements 
+                        are traceable to international standards and recognized globally.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="globe" class="w-6 h-6 text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-slate-900 mb-1">ILAC MRA Signatory</h4>
+                                <p class="text-slate-600 text-sm">Certificates accepted in over 100 countries worldwide through mutual recognition arrangements.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="file-text" class="w-6 h-6 text-accent-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-slate-900 mb-1">NIST Traceable</h4>
+                                <p class="text-slate-600 text-sm">All measurements traceable to National Institute of Standards and Technology through unbroken chain.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="shield" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-slate-900 mb-1">Quality Management</h4>
+                                <p class="text-slate-600 text-sm">ISO 9001:2015 certified quality management system with rigorous uncertainty analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 p-6 bg-slate-50 rounded-2xl border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-display font-bold text-slate-900">Accreditation Number</span>
+                            <span class="font-mono text-primary-600 font-bold">L1234-56789</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-500">Scope Available</span>
+                            <a href="#" class="text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1">
+                                Download PDF <i data-lucide="download" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-3xl blur-2xl opacity-20 transform rotate-3"></div>
+                    <div class="relative bg-white p-8 rounded-3xl shadow-2xl border border-slate-100">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="col-span-2 bg-slate-900 rounded-2xl p-6 text-white mb-4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-mono text-slate-400">CERTIFICATE OF CALIBRATION</span>
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Standard:</span>
+                                        <span>ISO 17025:2017</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Traceability:</span>
+                                        <span>NIST</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-slate-400">Uncertainty:</span>
+                                        <span>±0.0012%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-primary-50 rounded-xl p-4 border border-primary-100">
+                                <i data-lucide="microscope" class="w-8 h-8 text-primary-600 mb-2"></i>
+                                <div class="font-display font-bold text-slate-900">Environmental</div>
+                                <div class="text-xs text-slate-600">23°C ± 1°C</div>
+                            </div>
+                            
+                            <div class="bg-accent-50 rounded-xl p-4 border border-accent-100">
+                                <i data-lucide="clock" class="w-8 h-8 text-accent-600 mb-2"></i>
+                                <div class="font-display font-bold text-slate-900">Stabilization</div>
+                                <div class="text-xs text-slate-600">24 Hours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Our Calibration Process</h2>
+                <p class="text-slate-400 text-lg">Streamlined workflow designed to minimize your downtime while maximizing measurement confidence.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative">
+                    <div class="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-500/30">
+                        <span class="font-display text-2xl font-bold">01</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Intake & Inspection</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Initial visual inspection, cleaning, and functional check. Device information logged into LIMS.
+                    </p>
+                    <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary-600 to-transparent ml-4"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-500/30">
+                        <span class="font-display text-2xl font-bold">02</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Calibration</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Performed by trained technicians using accredited procedures in environmentally controlled lab.
+                    </p>
+                    <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary-600 to-transparent ml-4"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-500/30">
+                        <span class="font-display text-2xl font-bold">03</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Review & Certify</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Data review by technical manager, uncertainty calculation, and certificate generation with digital signatures.
+                    </p>
+                    <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary-600 to-transparent ml-4"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="w-16 h-16 bg-accent-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-accent-500/30">
+                        <span class="font-display text-2xl font-bold">04</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Return & Report</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Secure packaging with calibration labels, digital certificate delivery, and reminder scheduling.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-6">Request a Quote</h2>
+                    <p class="text-slate-600 text-lg mb-8">
+                        Get a customized calibration quote within 2 hours during business hours. 
+                        Emergency services available 24/7.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-slate-900">Laboratory Address</div>
+                                <div class="text-slate-600 text-sm">1234 Precision Drive, Industrial Park, CA 94043</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                                <i data-lucide="phone" class="w-5 h-5 text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-slate-900">Phone</div>
+                                <div class="text-slate-600 text-sm">+1 (555) 123-4567</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                                <i data-lucide="mail" class="w-5 h-5 text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-slate-900">Email</div>
+                                <div class="text-slate-600 text-sm">quotes@precisioncal.com</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-primary-600 rounded-2xl text-white">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="clock" class="w-6 h-6"></i>
+                            <span class="font-display font-bold text-lg">Business Hours</span>
+                        </div>
+                        <div class="space-y-1 text-primary-100 text-sm">
+                            <div class="flex justify-between">
+                                <span>Mon - Fri</span>
+                                <span>7:00 AM - 6:00 PM PST</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Saturday</span>
+                                <span>8:00 AM - 12:00 PM PST</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Emergency Service</span>
+                                <span>24/7 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
+                    <form id="quoteForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Acme Corp">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Contact Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John Doe">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@acme.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Service Type</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
+                                <option>Electrical Calibration</option>
+                                <option>Temperature Calibration</option>
+                                <option>Pressure Calibration</option>
+                                <option>Dimensional Calibration</option>
+                                <option>Mass & Force Calibration</option>
+                                <option>On-Site Services</option>
+                                <option>Multiple Services</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Equipment Details</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Please list manufacturer, model numbers, quantities, and any specific requirements..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-primary-500/30 flex items-center justify-center gap-2 group">
+                            Submit Request
+                            <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+
+                        <p class="text-xs text-slate-500 text-center">
+                            We respect your privacy. Your information will never be shared with third parties.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary-600 to-accent-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="activity" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white">
+                            Precision<span class="text-primary-400">Cal</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        ISO 17025 accredited calibration laboratory providing precision measurement services 
+                        with NIST traceability for industrial and scientific applications.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-primary-400 transition-colors">Services</a></li>
+                        <li><a href="#accreditation" class="hover:text-primary-400 transition-colors">Accreditation</a></li>
+                        <li><a href="#process" class="hover:text-primary-400 transition-colors">Process</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Client Portal</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Certificate Lookup</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Recall Schedule</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Technical Articles</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500">
+                    © 2024 PrecisionCal Labs. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-center text-slate-900 mb-2">Request Received!</h3>
+            <p class="text-slate-600 text-center mb-6">
+                Thank you for your inquiry. Our team will review your requirements and send a detailed quote within 2 hours.
+            </p>
+            <button onclick="closeModal()" class="w-full py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('quoteForm');
+        const modal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Animate in
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            // Reset form
+            form.reset();
+        });
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Close modal on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
